@@ -1,0 +1,57 @@
+---
+const reviews = [
+    {
+        name: "Mukesh Kumar",
+        review: "I truly recommend this doctor. I have seen remarkable changes on myself post taking medicine. Her approach was very comforting and the medicines she prescribed worked gradually but effectively.",
+        date: "12 November 2025",
+    },
+    {
+        name: "Rohit Verma",
+        review: "My sinus and dust allergy used to trouble me almost every week. After starting treatment with Dr. Aanchal, the frequency of attacks has reduced drastically. I feel lighter and breathe better now.",
+        date: "23 Oct 2025",
+    },
+    {
+        name: "Neha Kapoor",
+        review: "I had digestive issues for years—bloating and acidity every day. Dr. Aanchal's homeopathic treatment brought relief within a few weeks. She listens patiently and explains everything clearly.",
+        date: "05 Oct 2025",
+    },
+    {
+        name: "Simran Kaur",
+        review: "I visited Dr. Aanchal for irregular periods and hormonal imbalance. The treatment was very gentle and effective. My cycle is now regular and overall health has improved a lot.",
+        date: "17 Sept 2025",
+    },
+    {
+        name: "Ananya Gupta",
+        review: "My 7-year-old daughter had frequent cold and cough issues. Dr. Aanchal’s homeopathic medicines worked wonderfully without any side effects. Her friendly nature makes children very comfortable.",
+        date: "21 Aug 2025",
+    },
+    {
+        name: "Amit Tandon",
+        review: "I was dealing with chronic migraines for years. After taking treatment from Dr. Aanchal Tyagi, the intensity and frequency have reduced significantly. I am finally able to focus on my work without interruption.",
+        date: "27 Jul 2025",
+    }
+];
+
+---
+<section id="services" class="py-20 bg-green-50">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-green-800">What Patients Say</h2>
+        <p class="text-center text-gray-600 mt-3">Real experiences from our patients.</p>
+
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+            {reviews.map((item) => (
+                    <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+                        <div class="flex items-center gap-3">
+                            <h3 class="text-lg font-semibold">{item.name}</h3>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <h5 class="text-sm">{item.date}</h5>
+                        </div>
+                        <p class="mt-3 text-gray-600">{item.review}</p>
+                    </div>
+            ))}
+
+        </div>
+    </div>
+</section>
