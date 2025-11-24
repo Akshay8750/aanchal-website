@@ -14,8 +14,9 @@ const phone = "+91-9953154257";
 
                 <!-- LEFT: Icon + Title + Address -->
                 <div class="flex-1">
+
                     <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center">
+                        <div class="w-14 h-14 hidden md:flex bg-green-100 rounded-xl items-center justify-center">
                             <img src="/icons/map_green.svg" class="w-7 h-7" />
                         </div>
 
@@ -24,16 +25,16 @@ const phone = "+91-9953154257";
                         </h2>
                     </div>
 
-                    <p class="mt-4 text-gray-700 leading-relaxed">
-                        4, Shop number 3, 93, Gyan Khand 1, Gyankhand 4, Indirapuram,<br/>
+                    <p class="mt-4 text-gray-700 leading-relaxed md:max-w-lg w-full">
+                        Shop number 3, 93, Gyan Khand 1, Gyankhand 4, Indirapuram,
                         Ghaziabad, Uttar Pradesh 201014
                     </p>
                 </div>
 
-                <!-- RIGHT: Button -->
-                <div class="flex items-center">
+                <!-- RIGHT BUTTON – Desktop/Tablet -->
+                <div class="hidden md:flex items-center">
                     <a
-                            href="https://maps.google.com/?q=Ghaziabad"
+                            href="https://maps.app.goo.gl/zr2jB6oqrAzizYkd8"
                             target="_blank"
                             class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition whitespace-nowrap"
                     >
@@ -41,23 +42,24 @@ const phone = "+91-9953154257";
                     </a>
                 </div>
 
-            </div>
-
-
-
-            <!-- Features list -->
-            <div class="mt-6 space-y-4">
-
-                <!-- Phone -->
-                <div class="flex items-center gap-3">
-                    <p class="text-xl font-medium">
-                        – Area we served
-                    </p>
+                <!-- RIGHT BUTTON – MOBILE ROUND ICON -->
+                <div class="md:hidden mt-2">
+                    <a
+                            href="https://maps.app.goo.gl/zr2jB6oqrAzizYkd8"
+                            target="_blank"
+                            class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center shadow-md hover:bg-green-700 transition"
+                    >
+                        <img alt="map" src="/icons/direction.svg" class="w-6 h-6" />
+                    </a>
                 </div>
 
+            </div>
+
+            <!-- Area We Serve -->
+            <div class="mt-6 space-y-4">
+                <p class="text-xl font-medium">– Area we served</p>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-y-2 text-gray-700">
-
                     <p>• Gyan Khand I</p>
                     <p>• Gyan Khand II</p>
                     <p>• Gyan Khand III</p>
@@ -67,15 +69,10 @@ const phone = "+91-9953154257";
                     <p>• Kaushambi</p>
                     <p>• Vaishali</p>
                     <p>• Vasundhara</p>
-
                 </div>
-
             </div>
 
-
-
         </div>
-
 
     </div>
 </section>
@@ -97,14 +94,14 @@ const phone = "+91-9953154257";
                 <!-- Title + Number -->
                 <h3 class="text-xl font-bold mt-4">Call for Appointment</h3>
 
-                <p class="text-green-700 text-3xl font-bold mt-2">
+                <p class="text-green-700 text-3xl font-bold mt-2 pb-2">
                     {phone}
                 </p>
 
                 <!-- Button -->
                 <a
                         href={`tel:${phone}`}
-                        class="items-center justify-center text-center hidden md:flex bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition shadow"
+                        class="items-center justify-center text-center flex bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition shadow"
                 >
                     <div class="flex items-center space-x-2">
                         <img src="/icons/phone_white.svg" class="w-4 h-4"/>
