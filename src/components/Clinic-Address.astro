@@ -1,0 +1,171 @@
+---
+const phone = "+91-9953154257";
+---
+<section id="clinic-address" class="py-12 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-green-800">Services & Conditions Treated</h2>
+        <p class="text-center text-gray-600 mt-3 pb-8">Comprehensive homeopathic care for common and chronic conditions.</p>
+
+        <!-- MAIN ADDRESS CARD -->
+        <div class="bg-green-50 border border-green-100 rounded-2xl p-8 shadow-sm">
+
+            <!-- Address Header + Right Button -->
+            <div class="flex justify-between items-start w-full">
+
+                <!-- LEFT: Icon + Title + Address -->
+                <div class="flex-1">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center">
+                            <img src="/icons/map_green.svg" class="w-7 h-7" />
+                        </div>
+
+                        <h2 class="text-2xl font-bold text-gray-900">
+                            Clinic Address
+                        </h2>
+                    </div>
+
+                    <p class="mt-4 text-gray-700 leading-relaxed">
+                        4, Shop number 3, 93, Gyan Khand 1, Gyankhand 4, Indirapuram,<br/>
+                        Ghaziabad, Uttar Pradesh 201014
+                    </p>
+                </div>
+
+                <!-- RIGHT: Button -->
+                <div class="flex items-center">
+                    <a
+                            href="https://maps.google.com/?q=Ghaziabad"
+                            target="_blank"
+                            class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition whitespace-nowrap"
+                    >
+                        Get Directions
+                    </a>
+                </div>
+
+            </div>
+
+
+
+            <!-- Features list -->
+            <div class="mt-6 space-y-4">
+
+                <!-- Phone -->
+                <div class="flex items-center gap-3">
+                    <p class="text-xl font-medium">
+                        – Area we served
+                    </p>
+                </div>
+
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-y-2 text-gray-700">
+
+                    <p>• Gyan Khand I</p>
+                    <p>• Gyan Khand II</p>
+                    <p>• Gyan Khand III</p>
+                    <p>• Gyan Khand IV</p>
+
+                    <p>• Ahinsa Khand</p>
+                    <p>• Kaushambi</p>
+                    <p>• Vaishali</p>
+                    <p>• Vasundhara</p>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+</section>
+<section class="pb-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 space-y-10">
+
+        <!-- GRID: Horizontal on desktop, stacked on mobile -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div class="bg-green-50 border border-green-100 rounded-2xl p-8 text-center shadow-sm flex flex-col justify-between">
+
+                <!-- Icon -->
+                <div class="flex justify-center">
+                    <div class="w-15 h-15 bg-green-200 rounded-full flex items-center justify-center">
+                        <img src="/icons/phone_green.svg" class="w-8 h-8" />
+                    </div>
+                </div>
+
+                <!-- Title + Number -->
+                <h3 class="text-xl font-bold mt-4">Call for Appointment</h3>
+
+                <p class="text-green-700 text-3xl font-bold mt-2">
+                    {phone}
+                </p>
+
+                <!-- Button -->
+                <a
+                        href={`tel:${phone}`}
+                        class="items-center justify-center text-center hidden md:flex bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition shadow"
+                >
+                    <div class="flex items-center space-x-2">
+                        <img src="/icons/phone_white.svg" class="w-4 h-4"/>
+                        <span class="text-sm">Call Now</span>
+                    </div>
+                </a>
+            </div>
+            <div class="bg-green-50 border border-green-100 rounded-2xl p-8 text-center shadow-sm flex flex-col justify-between">
+
+                <!-- Icon -->
+                <div class="flex justify-center">
+                    <div class="w-15 h-15 bg-green-200 rounded-full flex items-center justify-center">
+                        <img src="/icons/clock_square_green.svg" class="w-8 h-8" />
+                    </div>
+                </div>
+
+                <!-- Title + Number -->
+                <h3 class="text-xl font-bold mt-4">Clinic Hours</h3>
+                <div class="mt-4 space-y-3">
+                    <div class="flex justify-between text-gray-700">
+                        <span>Monday – Sunday</span>
+                        <span class="text-green-700 font-medium">12–2PM, 6–8PM</span>
+                    </div>
+
+                    <div class="flex justify-between text-gray-700">
+                        <span>Friday</span>
+                        <span class="text-red-500 font-medium">Closed</span>
+                    </div>
+
+                    <div class="flex justify-between text-gray-700">
+                        <span>Emergency Care</span>
+                        <span class="text-green-700 font-medium">24/7 Available</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-green-50 border border-green-100 rounded-2xl p-8 shadow-sm flex flex-col">
+
+                <h3 class="text-xl text-center font-bold mb-4">Why Choose Us?</h3>
+
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600">✔</span> BHMS qualified doctor
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600">✔</span> 24/7 availability
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600">✔</span> Personalized treatment
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600">✔</span> Natural healing approach
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-600">✔</span> Community focused care
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+

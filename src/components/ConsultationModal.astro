@@ -1,0 +1,142 @@
+---
+const { isOpen = false } = Astro.props;
+---
+
+<style>
+    .modal-overlay {
+        backdrop-filter: blur(4px);
+        background: rgba(0,0,0,0.55);
+    }
+</style>
+
+<div id="consultationModal" class={`fixed inset-0 flex items-center justify-center modal-overlay z-[999] ${isOpen ? '' : 'hidden'}`}>
+
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl p-8 relative animate-fadeIn">
+
+        <!-- Close Button -->
+        <button id="closeModalBtn" class="absolute right-4 top-4 text-gray-500 hover:text-gray-700 text-2xl">
+            &times;
+        </button>
+
+        <h2 class="text-center text-2xl font-bold mb-6">
+            Book Your Consultation
+        </h2>
+
+        <!-- FORM -->
+        <form id="consultForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- Full Name -->
+            <div class="col-span-1">
+                <label class="text-sm font-medium">Full Name *</label>
+                <input id="fullName" type="text"
+                       class="w-full mt-1 border p-3 rounded-lg focus:ring-2 focus:ring-green-500"
+                       placeholder="Enter your full name" required />
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="text-sm font-medium">Email Address *</label>
+                <input id="email" type="email"
+                       class="w-full mt-1 border p-3 rounded-lg focus:ring-2 focus:ring-green-500"
+                       placeholder="Enter your email" required />
+            </div>
+
+            <!-- Phone -->
+            <div class="col-span-2">
+                <label class="text-sm font-medium">Phone Number *</label>
+                <input id="phone" type="tel"
+                       class="w-full mt-1 border p-3 rounded-lg focus:ring-2 focus:ring-green-500"
+                       placeholder="Enter your phone number" required />
+            </div>
+
+            <!-- Preferred Date -->
+            <div>
+                <label class="text-sm font-medium">Preferred Date *</label>
+                <input id="date" type="date"
+                       class="w-full mt-1 border p-3 rounded-lg focus:ring-2 focus:ring-green-500"
+                       required />
+            </div>
+
+            <!-- Preferred Time -->
+            <div>
+                <label class="text-sm font-medium">Preferred Time *</label>
+                <select id="time"
+                        class="w-full mt-1 border p-3 rounded-lg focus:ring-2 focus:ring-green-500">
+                    <option value="">Select time</option>
+                    <option>12:00 PM</option>
+                    <option>12:30 PM</option>
+                    <option>1:00 PM</option>
+                    <option>6:00 PM</option>
+                    <option>6:30 PM</option>
+                    <option>7:00 PM</option>
+                </select>
+            </div>
+
+            <!-- Message -->
+            <div class="col-span-2">
+                <label class="text-sm font-medium">
+                    Additional Message (Optional)
+                </label>
+                <textarea id="message" rows="3"
+                          class="w-full mt-1 border p-3 rounded-lg focus:ring-2 focus:ring-green-500"
+                          placeholder="Describe your health concerns"></textarea>
+            </div>
+
+            <!-- Buttons -->
+            <div class="col-span-2 flex justify-between mt-4">
+                <button id="cancelModalBtn"
+                        class="px-6 py-3 bg-gray-200 rounded-lg hover:bg-gray-300 font-medium">
+                    Cancel
+                </button>
+
+                <button type="submit"
+                        class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold">
+                    Book Consultation
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("consultationModal");
+    const closeBtn = document.getElementById("closeModalBtn");
+    const cancelBtn = document.getElementById("cancelModalBtn");
+    const form = document.getElementById("consultForm");
+
+    function closeModal() {
+        modal.classList.add("hidden");
+    }
+
+    closeBtn?.addEventListener("click", closeModal);
+    cancelBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeModal();
+    });
+
+    // Handle submissions
+    form?.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const data = {
+            name: document.getElementById("fullName").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            date: document.getElementById("date").value,
+            time: document.getElementById("time").value,
+            message: document.getElementById("message").value,
+        };
+
+        console.log("🔥 Form submitted:", data);
+
+        alert("Your request has been submitted!");
+
+        closeModal();
+    });
+
+    // Open modal globally
+    window.openConsultationForm = () => {
+        modal.classList.remove("hidden");
+    };
+</script>

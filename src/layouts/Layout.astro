@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 const { title = "Dr. Aanchal Tyagi" } = Astro.props;
+import BookingModal from '../components/BookingModal.astro';
 ---
 
 <html lang="en">
@@ -16,5 +17,6 @@ const { title = "Dr. Aanchal Tyagi" } = Astro.props;
 
 <body class="bg-gray-50 text-gray-800">
 <slot />
+<BookingModal client:visible />
 </body>
 </html>

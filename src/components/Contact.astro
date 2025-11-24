@@ -1,6 +1,6 @@
 ---
 ---
-<section id="contact" class="pb-24 bg-[#F5FCF8]">
+<section id="contact" class="py-12 bg-[#F5FCF8]">
     <div class="max-w-6xl mx-auto px-6">
 
         <!-- HEADING -->
@@ -126,27 +126,55 @@
 
 
 <script>
+    import { saveContactQuery } from "../services/firebaseService.js";
+
     const form = document.getElementById("contactForm");
     const msgEl = document.getElementById("formMsg");
 
-    form?.addEventListener("submit", (e) => {
+    form?.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const name = document.getElementById("name")?.value.trim();
         const email = document.getElementById("email")?.value.trim();
-        const phone = document.getElementById("phone")?.value.trim() ?? "";
+        const phone = document.getElementById("phone")?.value.trim();
         const message = document.getElementById("message")?.value.trim();
 
-        const subject = encodeURIComponent(`Appointment request from ${name}`);
-        const body = encodeURIComponent(
-            `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`
-        );
-
-        window.location.href = `mailto:akshayrajput9634@gmail.com?subject=${subject}&body=${body}`;
-
-        if (msgEl) {
-            msgEl.textContent = "Opening your mail client…";
+        if (!name || !email || !message) {
+            msgEl.textContent = "Please complete required fields.";
             msgEl.classList.remove("hidden");
+            msgEl.classList.add("text-red-600");
+            return;
+        }
+
+        msgEl.textContent = "Sending...";
+        msgEl.classList.remove("hidden");
+        msgEl.classList.remove("text-red-600");
+        msgEl.classList.add("text-gray-600");
+
+        try {
+            await saveContactQuery({
+                name,
+                email,
+                phone,
+                message,
+                source: window.location.pathname,
+            });
+
+            msgEl.textContent = "Message sent successfully!";
+            msgEl.classList.remove("text-gray-600");
+            msgEl.classList.add("text-green-600");
+
+            form.reset();
+
+            setTimeout(() => {
+                msgEl.classList.add("hidden");
+            }, 2000);
+        } catch (err) {
+            console.error(err);
+            msgEl.textContent = "Error sending message. Please try again.";
+            msgEl.classList.remove("text-gray-600");
+            msgEl.classList.add("text-red-600");
         }
     });
 </script>
+

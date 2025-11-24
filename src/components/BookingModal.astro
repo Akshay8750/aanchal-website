@@ -1,0 +1,161 @@
+---
+---
+
+<div id="bookingModalOverlay" class="hidden fixed inset-0 bg-black/50 z-40"></div>
+
+<div id="bookingModal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-4">
+    <div class="bg-white w-full max-w-3xl rounded-2xl shadow-2xl p-6 md:p-8 relative">
+
+        <!-- Close -->
+        <button id="bookingModalClose"
+                class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-xl">
+            ✕
+        </button>
+
+        <h2 class="text-3xl font-bold text-center text-gray-900">Book Your Consultation</h2>
+
+        <form id="bookingForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+
+            <!-- NAME -->
+            <div>
+                <label class="text-sm font-medium text-gray-700">Full Name *</label>
+                <input id="b_name" required placeholder="Enter full name"
+                       class="mt-1 w-full px-4 py-3 border rounded-lg" />
+            </div>
+
+            <!-- EMAIL -->
+            <div>
+                <label class="text-sm font-medium text-gray-700">Email *</label>
+                <input id="b_email" required type="email"
+                       placeholder="Enter email"
+                       class="mt-1 w-full px-4 py-3 border rounded-lg" />
+            </div>
+
+            <!-- PHONE -->
+            <div class="md:col-span-2">
+                <label class="text-sm font-medium text-gray-700">Phone *</label>
+                <input id="b_phone" required placeholder="Enter phone"
+                       class="mt-1 w-full px-4 py-3 border rounded-lg" />
+            </div>
+
+            <!-- DATE -->
+            <div>
+                <label class="text-sm font-medium text-gray-700">Preferred Date *</label>
+                <input id="b_date" type="date" required
+                       class="mt-1 w-full px-4 py-3 border rounded-lg" />
+            </div>
+
+            <!-- TIME -->
+            <div>
+                <label class="text-sm font-medium text-gray-700">Preferred Time *</label>
+                <select id="b_time" required class="mt-1 w-full px-4 py-3 border rounded-lg">
+                    <option value="">Select time</option>
+                    <option>10:00 AM</option>
+                    <option>11:00 AM</option>
+                    <option>12:00 PM</option>
+                    <option>04:00 PM</option>
+                    <option>05:00 PM</option>
+                    <option>06:00 PM</option>
+                </select>
+            </div>
+
+            <!-- MESSAGE -->
+            <div class="md:col-span-2">
+                <label class="text-sm font-medium text-gray-700">Message (optional)</label>
+                <textarea id="b_message" rows="4"
+                          class="mt-1 w-full px-4 py-3 border rounded-lg"
+                          placeholder="Describe your health concerns..."></textarea>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="md:col-span-2 flex justify-between items-center">
+                <span id="b_status" class="text-sm text-gray-600"></span>
+
+                <div class="flex gap-3">
+                    <button id="b_cancel" type="button"
+                            class="px-6 py-3 border rounded-lg">
+                        Cancel
+                    </button>
+
+                    <button id="b_submit"
+                            class="px-6 py-3 rounded-lg bg-green-600 text-white font-semibold">
+                        Book Consultation
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal control + saving logic -->
+<script>
+    import { saveBooking } from "../services/firebaseService.js";
+
+    const overlay = document.getElementById("bookingModalOverlay");
+    const modal = document.getElementById("bookingModal");
+
+    window.openBookingModal = () => {
+        overlay.classList.remove("hidden");
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+    };
+
+    window.closeBookingModal = () => {
+        overlay.classList.add("hidden");
+        modal.classList.add("hidden");
+        document.body.style.overflow = "";
+    };
+
+    document.getElementById("bookingModalClose")?.addEventListener("click", window.closeBookingModal);
+    document.getElementById("b_cancel")?.addEventListener("click", window.closeBookingModal);
+    overlay?.addEventListener("click", window.closeBookingModal);
+
+    const form = document.getElementById("bookingForm");
+    const statusEl = document.getElementById("b_status");
+    const submitBtn = document.getElementById("b_submit");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const data = {
+            name: b_name.value,
+            email: b_email.value,
+            phone: b_phone.value,
+            date: b_date.value,
+            time: b_time.value,
+            message: b_message.value,
+            source: window.location.pathname,
+        };
+
+        submitBtn.disabled = true;
+        statusEl.textContent = "Sending...";
+
+        try {
+            await saveBooking(data);
+
+            statusEl.textContent = "Submitted successfully!";
+            statusEl.classList.add("text-green-600");
+
+            setTimeout(() => {
+                window.closeBookingModal();
+                statusEl.textContent = "";
+                form.reset();
+            }, 1200);
+
+        } catch (err) {
+            console.error(err);
+            statusEl.textContent = "Something went wrong!";
+            statusEl.classList.add("text-red-600");
+        }
+
+        submitBtn.disabled = false;
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".book-appointment-btn")
+            .forEach(btn => btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                openBookingModal();
+            }));
+    });
+</script>
